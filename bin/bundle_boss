@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'bundle_boss'
+
+GrowlNotify.config do |config|
+  config.notifications         = ["BundleBoss"]
+  config.default_notifications = ["BundleBoss"] 
+  config.application_name      = "BundleBoss"
+end
+
+# Load settings from ~/.bundleboss
+settings_file = File.expand_path("~/.bundleboss")
+if File.exists? settings_file
+  settings = YAML::load(File.read(settings_file))
+else
+  raise "Missing .bundleboss settings file."
+end
+
+# Hardcode Bundling Action
+BundleBoss::Watchdog.load settings
+BundleBoss::Watchdog.run!
