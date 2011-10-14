@@ -1,0 +1,18 @@
+# BundleBoss settings
+settings:
+  # Show Growl notifications.
+  notifications: true
+  # Run 'bundle update' when required.
+  update: true
+
+# Bundler settings. Can be any valid Bundler option.
+bundler:
+  # Equivalent to: --binstubs
+  binstubs: true
+  # Equivalent to: --shebang ruby-local-exec
+  shebang: ruby-local-exec
+
+# A list of your Bundler enabled projects.
+projects:
+ - ~/src/omg
+ - ~/src/wtf

@@ -19,7 +19,7 @@ module BundleBoss
         if @settings['notifications']
           GrowlNotify.normal(:title => name,
                              :description => msg,
-                             :icon => File.expand_path('./images/pending.png'))
+                             :icon => File.expand_path(File.dirname(__FILE__) + '/../../images/pending.png'))
         end
       end
 
@@ -28,7 +28,7 @@ module BundleBoss
         if @settings['notifications']
           GrowlNotify.very_low(:title => name,
                                :description => 'All systems go!',
-                               :icon => File.expand_path('./images/success.png'))
+                               :icon => File.expand_path(File.dirname(__FILE__) + '/../../images/success.png'))
         end
       end
 
@@ -37,7 +37,7 @@ module BundleBoss
         if @settings['notifications']
           GrowlNotify.sticky!(:title => name,
                               :description => msg,
-                              :icon => File.expand_path('./images/failed.png'))
+                              :icon => File.expand_path(File.dirname(__FILE__) + '/../../images/failed.png'))
         end
       end
 

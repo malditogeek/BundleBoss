@@ -31,7 +31,7 @@ module BundleBoss
       end
       stdout
     end
-  
+
     def bundle_install
       install_cmd = []
       install_cmd << "#{bundle_path} install"
@@ -43,25 +43,33 @@ module BundleBoss
       end
       run install_cmd
     end
-  
+
     def bundle_path
       "#{ENV['HOME']}/.rbenv/shims/bundle"
     end
-  
+
     def gemfile_changed?
       @sha1 != sha1
     end
-   
+
     def bundle
+      BundleBoss::Watchdog.info name, 'Hardcore Bundle Action'
+
       stdout = bundle_install
       if stdout =~ /bundle update/
         if @settings['update']
-          BundleBoss.info name, 'Updating...'
+          BundleBoss::Watchdog.info name, 'Updating...'
           bundle_update
           stdout = bundle_install
         end
       end
-      stdout.empty? ? BundleBoss.success(name) : BundleBoss.error(name, "#{stdout.gsub(/\e\[\w{1,2}m/,'')}")
+
+      if stdout.empty?
+        BundleBoss::Watchdog.success(name)
+      else
+        BundleBoss::Watchdog.error(name, "#{stdout.gsub(/\e\[\w{1,2}m/,'')}")
+      end
+
       @sha1 = sha1
     end
   

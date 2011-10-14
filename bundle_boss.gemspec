@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Mauro Pompilio"]
   gem.email         = ["hackers.are.rockstars@gmail.com"]
   gem.description   = %q{BundleBoss does all the dirty Bundler work for you.}
-  gem.summary       = %q{BundleBoss}
+  gem.summary       = %q{BundleBoss. That is all.}
   gem.homepage      = ""
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
@@ -15,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = BundleBoss::VERSION
 
+  gem.add_dependency("bundler")
   gem.add_dependency("rb-fsevent", "~> 0.4.3.1")
   gem.add_dependency("growl_notify", "~> 0.0.3")
 end
